@@ -1,6 +1,11 @@
 const searchEl = document.querySelector('#searchedCity');
 const searchBtn = document.querySelector('#search');
-const curCityEl = document.querySelector('#currentCity');
+const currCityEl = document.querySelector('#currentCity');
+const currTempEl = document.querySelector('#currentTemp');
+const currWindEl = document.querySelector('#currentWind');
+const currHumiEl = document.querySelector('#currentHumidity');
+const currUVEl = document.querySelector('#currentUV');
+const currUVIndexEl =document.querySelector('#currentUVIndex');
 const fiveDayEl = document.querySelector('#fiveDay');
 
 function getCoords(city) {
@@ -29,8 +34,13 @@ function getCoords(city) {
 function citySearch() {
     const currCoords = JSON.parse(localStorage.getItem('searchedCoords'));
     const h2 = document.createElement('h2');
-    const p = document.createElement('p');
+    const h4 = document.createElement('h4');
     const img = document.createElement('img');
+    const pTemp = document.createElement('p');
+    const pWind = document.createElement('p');
+    const pHumi = document.createElement('p');
+    const pUV = document.createElement('p');
+    const pUVIndex = document.createElement('p');
 
     const city = currCoords[currCoords.length - 1].city;
     const lat = currCoords[currCoords.length - 1].lat;
@@ -38,7 +48,7 @@ function citySearch() {
     const coordSearch = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=alerts,minutely,hourly&units=imperial&appid=db4bfdf57ac03972792c74c1239c237e`
 
     h2.textContent = city;
-    curCityEl.appendChild(h2);
+    currCityEl.appendChild(h2);
 
     fetch(coordSearch)
         .then(function (res) {
@@ -52,15 +62,36 @@ function citySearch() {
             const day = date.getDate();
             const year = date.getUTCFullYear();
 
-            p.textContent = `${month}/${day}/${year}`;
-            h2.appendChild(p);
+            h4.textContent = `${month}/${day}/${year}`;
+            h2.appendChild(h4);
             
-            const currWeather = data.current.weather[0].icon;
-            const weatherImg = `http://openweathermap.org/img/wn/${currWeather}@2x.png`
+            const currImg = data.current.weather[0].icon;
+            const weatherImg = `http://openweathermap.org/img/wn/${currImg}.png`;
 
             img.src = weatherImg;
-            p.appendChild(img);
+            h4.appendChild(img);
 
+            const currTemp = data.current.temp;
+            
+            pTemp.textContent = `Temp: ${currTemp}\u00B0F`;
+            currTempEl.appendChild(pTemp);
+
+            const currWind = data.current.wind_speed;
+            
+            pWind.textContent = `Wind: ${currWind} MPH`;
+            currWindEl.appendChild(pWind);
+
+            const currHumi = data.current.humidity;
+            
+            pHumi.textContent = `Humidity: ${currHumi} %`;
+            currHumiEl.appendChild(pHumi);
+
+            const currUV = data.current.uvi;
+            
+            pUV.textContent = `UV Index: `;
+            pUVIndex.textContent = `${currUV}`;
+            currUVEl.appendChild(pUV);
+            currUVIndexEl.appendChild(pUVIndex);
         })
 };
 
