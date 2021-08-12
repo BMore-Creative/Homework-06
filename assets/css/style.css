@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    font-weight: normal;
+}
+
+header {
+    padding: 7px;
+    text-align: center;
+    background-color: cornflowerblue;
+    height: 60px;
+}
+
+.searchsContainer {
+    display: inline-flex; 
+    margin-top: 10px;
+    margin-right: 13px;
+    margin-left: 10px;
+    min-width: 35vh;
+    height: 95vh;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.search {
+    height: 40px;
+}
+
+button.search {
+    padding: 6px 35%;
+}
+
+button#search {
+    min-width: 100%;
+    background-color: skyblue;
+    flex-basis: 0px;
+}
+
+.currentContainer {
+    display: inline-flex;
+    flex-direction: column;
+    margin-top: 5px;
+    gap: 10px;
+    width: 70%;
+    height: 30vh;
+    border: 1px solid darkgray;
+}
+
+.currentCity {
+    display: inline-flex;
+    align-items: center;
+}
+
+.currentCity h2 {
+    margin-right: 5px;
+}
+
+.fiveDay {
+    display: inline-flex;
+    width: 65vh;
+}

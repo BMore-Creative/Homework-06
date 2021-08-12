@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Weather Dashboard</h1>
+      <h1>Weather Dashboard</h1>
     </header>
-    <section class='searchs'>
-        <h2>Search for a City:</h2>
-        <input type='text' placeholder='Where to?' id='searchedCity'/>
-        <button id='search'>Search</button>
-        <hr>
-        <div></div>
+    <section class="searchsContainer">
+      <h2>Search for a City:</h2>
+      <input
+        type="text"
+        placeholder="Where to?"
+        id="searchedCity"
+        class="search"
+      />
+      <button id="search" class="search">Search</button>
+      <hr />
+      <div></div>
     </section>
-    <main>
-        <section>
-            <!-- Current Information for searched city -->
-            <div id='currentCity'></div>
-            <div id='currentTemp'></div>
-            <div id='currentWind'></div>
-            <div id='currentHumidity'></div>
-            <div><span id='currentUV'></span><span id='currentUVIndex'></span></div>
-        </section>
-        <section>
-            <!-- 5 day forecast for searched city -->
-            <h3>5-Day Forecast:</h3>
-            <div id='fiveDay'>
-            </div>
-        </section>
-    </main>
+    <section class="currentContainer">
+      <!-- Current Information for searched city -->
+      <div id="currentCity" class="currentCity"></div>
+      <div id="currentTemp"></div>
+      <div id="currentWind"></div>
+      <div id="currentHumidity"></div>
+      <div><span id="currentUV"></span><span id="currentUVIndex"></span></div>
+    </section>
+    <section class="fiveDay">
+      <!-- 5 day forecast for searched city -->
+      <h3>5-Day Forecast:</h3>
+      <div id="fiveDay"></div>
+    </section>
 
-    <script src='./assets/js/script.js'></script>
-</body>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>

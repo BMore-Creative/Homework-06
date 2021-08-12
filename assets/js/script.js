@@ -33,7 +33,7 @@ function getCoords(city) {
 function citySearch() {
   const currCoords = JSON.parse(localStorage.getItem("searchedCoords"));
   const h2 = document.createElement("h2");
-  const h4 = document.createElement("h4");
+  const h2Date = document.createElement("h2");
   const img = document.createElement("img");
   const pTemp = document.createElement("p");
   const pWind = document.createElement("p");
@@ -61,14 +61,14 @@ function citySearch() {
       const day = date.getDate();
       const year = date.getUTCFullYear();
 
-      h4.textContent = `${month}/${day}/${year}`;
-      h2.appendChild(h4);
+      h2Date.textContent = `${month}/${day}/${year}`;
+      currCityEl.appendChild(h2Date);
 
       const currImg = data.current.weather[0].icon;
       const weatherImg = `http://openweathermap.org/img/wn/${currImg}.png`;
 
       img.src = weatherImg;
-      h4.appendChild(img);
+      currCityEl.appendChild(img);
 
       const currTemp = data.current.temp;
 
