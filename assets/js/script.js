@@ -107,12 +107,16 @@ function fiveDay() {
     .then(function (data) {
       console.log(data);
 
-      for (let i = 0; i < 5; i++) {
+      for (let i = 1; i < 6; i++) {
+        const dayBox = document.createElement('div');
         const h3 = document.createElement("h3");
         const imgFive = document.createElement("img");
         const pTempFive = document.createElement("p");
         const pWindFive = document.createElement("p");
         const pHumiFive = document.createElement("p");
+
+        dayBox.setAttribute('id', `day${i}`);
+        fiveDayEl.appendChild(dayBox);
 
         const currUnixFive = data.daily[i].dt;
         const dateFive = new Date(currUnixFive * 1000);
@@ -121,35 +125,37 @@ function fiveDay() {
         const yearFive = dateFive.getUTCFullYear();
 
         h3.textContent = `${monthFive}/${dayFive}/${yearFive}`;
-        fiveDayEl.appendChild(h3);
+        dayBox.appendChild(h3);
 
         const currTempFive = data.daily[i].temp.max;
 
         pTempFive.textContent = `Temp: ${currTempFive}\u00B0F`;
-        h3.appendChild(pTempFive);
+        dayBox.appendChild(pTempFive);
 
         const currImgFive = data.daily[i].weather[0].icon;
         const weatherImgFive = `http://openweathermap.org/img/wn/${currImgFive}.png`;
 
         imgFive.src = weatherImgFive;
-        h3.insertBefore(imgFive, pTempFive);
+        dayBox.insertBefore(imgFive, pTempFive);
 
         const currWindFive = data.daily[i].wind_speed;
 
         pWindFive.textContent = `Wind: ${currWindFive} MPH`;
-        pTempFive.appendChild(pWindFive);
+        dayBox.appendChild(pWindFive);
 
         const currHumiFive = data.daily[i].humidity;
 
         pHumiFive.textContent = `Humidity: ${currHumiFive} %`;
-        pWindFive.appendChild(pHumiFive);
+        dayBox.appendChild(pHumiFive);
       }
     });
 }
 
 searchBtn.onclick = function () {
   let searchedCity = searchEl.value;
-  getCoords(searchedCity);
-  setTimeout(citySearch, 1000);
-  setTimeout(fiveDay, 1000);
+  if (searchedCity !== "") {
+    getCoords(searchedCity);
+    setTimeout(citySearch, 1000);
+    setTimeout(fiveDay, 1000);
+  }
 };

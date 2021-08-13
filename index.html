@@ -11,31 +11,37 @@
     <header>
       <h1>Weather Dashboard</h1>
     </header>
-    <section class="searchsContainer">
-      <h2>Search for a City:</h2>
-      <input
-        type="text"
-        placeholder="Where to?"
-        id="searchedCity"
-        class="search"
-      />
-      <button id="search" class="search">Search</button>
-      <hr />
-      <div></div>
-    </section>
-    <section class="currentContainer">
-      <!-- Current Information for searched city -->
-      <div id="currentCity" class="currentCity"></div>
-      <div id="currentTemp"></div>
-      <div id="currentWind"></div>
-      <div id="currentHumidity"></div>
-      <div><span id="currentUV"></span><span id="currentUVIndex"></span></div>
-    </section>
-    <section class="fiveDay">
-      <!-- 5 day forecast for searched city -->
-      <h3>5-Day Forecast:</h3>
-      <div id="fiveDay"></div>
-    </section>
+    <div class="main">
+      <section class="searchsContainer">
+        <h2>Search for a City:</h2>
+        <input
+          type="text"
+          placeholder="Where to?"
+          id="searchedCity"
+          class="search"
+        />
+        <button id="search" class="search">Search</button>
+        <hr />
+        <div></div>
+      </section>
+      <div class='infoContainer'>
+        <section class="currentContainer">
+          <!-- Current Information for searched city -->
+          <div id="currentCity" class="currentCity"></div>
+          <div id="currentTemp"></div>
+          <div id="currentWind"></div>
+          <div id="currentHumidity"></div>
+          <div>
+            <span id="currentUV"></span><span id="currentUVIndex"></span>
+          </div>
+        </section>
+        <section class="fiveDay">
+          <!-- 5 day forecast for searched city -->
+          <h3>5-Day Forecast:</h3>
+          <div id="fiveDay"></div>
+        </section>
+      </div>
+    </div>
 
     <script src="./assets/js/script.js"></script>
   </body>
