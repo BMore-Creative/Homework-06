@@ -1,5 +1,6 @@
 const searchEl = document.querySelector("#searchedCity");
 const searchBtn = document.querySelector("#search");
+const cityHistoryEl = document.querySelector("#cityHistory");
 const currCityEl = document.querySelector("#currentCity");
 const currInfoEl = document.querySelector("#currentInfo");
 const currUVEl = document.querySelector("#currentUV");
@@ -21,11 +22,58 @@ function getCoords(city) {
         lon: data.coord.lon,
       };
       console.log(newCoords);
+
+      let historyCoords =
+        JSON.parse(localStorage.getItem("historyCoords")) || [];
+
       let searchedCoords =
         JSON.parse(localStorage.getItem("searchedCoords")) || [];
-      searchedCoords.push(newCoords);
+
+      let newCity = true;
+
+      newCity = historyCoords.every(function (val) {
+        console.log(val.city);
+        if (newCoords.city !== val.city) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      console.log(newCity);
+
+      if (newCity === true) {
+        historyCoords.push(newCoords);
+        searchedCoords.push(newCoords);
+        console.log("New City Added");
+      } else {
+        searchedCoords.push(newCoords);
+        console.log("Old City Added");
+      }
+
+      localStorage.setItem("historyCoords", JSON.stringify(historyCoords));
       localStorage.setItem("searchedCoords", JSON.stringify(searchedCoords));
     });
+}
+
+function addHistory() {
+  const historyCoords = JSON.parse(localStorage.getItem("historyCoords"));
+
+  if (historyCoords !== null) {
+    for (let i = 0; i < historyCoords.length; i++) {
+      const btn = document.createElement("button");
+      let cityName = historyCoords[i].city;
+
+      btn.textContent = cityName;
+
+      cityHistoryEl.appendChild(btn);
+
+      btn.onclick = function (event) {
+          let oldCity = event.target.textContent
+          apiCall(oldCity);
+      }
+    }
+  }
 }
 
 function citySearch() {
@@ -123,7 +171,7 @@ function fiveDay() {
         const pWindFive = document.createElement("p");
         const pHumiFive = document.createElement("p");
 
-        dayBox.setAttribute("id", `day${i}`);
+        dayBox.setAttribute("class", "dayBox");
         fiveDayEl.appendChild(dayBox);
 
         const currUnixFive = data.daily[i].dt;
@@ -165,14 +213,28 @@ function removePrevious() {
   currUVEl.innerHTML = "";
   currUVIndexEl.innerHTML = "";
   fiveDayEl.innerHTML = "";
+  cityHistoryEl.innerHTML = "";
 }
 
-searchBtn.onclick = function () {
-  let searchedCity = searchEl.value;
+function apiCall(city) {
+  let searchedCity = searchEl.value || city;
   if (searchedCity !== "") {
     removePrevious();
     getCoords(searchedCity);
     setTimeout(citySearch, 1000);
     setTimeout(fiveDay, 1000);
+    setTimeout(addHistory, 1000);
   }
-};
+}
+
+function enterCheck(event) {
+  if (event.key === "Enter") {
+    apiCall();
+  }
+}
+
+addHistory();
+
+searchBtn.onclick = apiCall;
+
+searchEl.onkeyup = enterCheck;
