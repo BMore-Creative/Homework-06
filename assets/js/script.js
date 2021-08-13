@@ -223,7 +223,7 @@ function removePrevious() {
 }
 
 function apiCall(city) {
-  let searchedCity = searchEl.value || city;
+  let searchedCity = city || searchEl.value;
   if (searchedCity !== "") {
     removePrevious();
     getCoords(searchedCity);
@@ -241,7 +241,9 @@ function enterCheck(event) {
 
 addHistory();
 
-searchBtn.onclick = apiCall;
+searchBtn.onclick = function () {
+    apiCall(null);
+};
 
 searchEl.onkeyup = enterCheck;
 
