@@ -22,6 +22,7 @@ header {
   display: flex;
 }
 
+/* ---------------SEARCH--------------- */
 .searchsContainer {
   display: inline-flex;
   margin-top: 10px;
@@ -43,27 +44,31 @@ button {
   flex-basis: 0px;
 }
 
-button#search, button#clear {
+button#search,
+button#clear {
   background-color: rgb(179, 216, 231);
 }
 
+/* ---------------HISTORY--------------- */
 .history {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
 }
 
-.history button{
-    display: flex;
-    justify-content: center;
+.history button {
+  display: flex;
+  justify-content: center;
 }
 
+/* ---------------WEATHER INFORMATION--------------- */
 .infoContainer {
   display: flex;
   height: 90vh;
   flex-direction: column;
 }
 
+/* ---------------CURRENT--------------- */
 .currentContainer {
   display: inline-flex;
   flex-direction: column;
@@ -95,6 +100,7 @@ button#search, button#clear {
   margin-bottom: 5px;
 }
 
+/* ---------------UV INDEX--------------- */
 .currentUV {
   display: inline-flex;
 }
@@ -125,6 +131,7 @@ button#search, button#clear {
   background-color: rgb(172, 54, 54);
 }
 
+/* ---------------FIVE DAY--------------- */
 .fiveDay {
   display: inline-flex;
   width: 65vw;
