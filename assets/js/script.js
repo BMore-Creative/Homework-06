@@ -1,5 +1,6 @@
 const searchEl = document.querySelector("#searchedCity");
 const searchBtn = document.querySelector("#search");
+const clearBtn = document.querySelector('#clear');
 const cityHistoryEl = document.querySelector("#cityHistory");
 const currCityEl = document.querySelector("#currentCity");
 const currInfoEl = document.querySelector("#currentInfo");
@@ -74,6 +75,11 @@ function addHistory() {
       }
     }
   }
+}
+
+function clearHistory() {
+    localStorage.removeItem('historyCoords');
+    window.location.reload();
 }
 
 function citySearch() {
@@ -238,3 +244,5 @@ addHistory();
 searchBtn.onclick = apiCall;
 
 searchEl.onkeyup = enterCheck;
+
+clearBtn.onclick = clearHistory;

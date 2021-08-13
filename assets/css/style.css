@@ -43,7 +43,7 @@ button {
   flex-basis: 0px;
 }
 
-button#search {
+button#search, button#clear {
   background-color: rgb(179, 216, 231);
 }
 
