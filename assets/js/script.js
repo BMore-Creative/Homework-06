@@ -1,9 +1,7 @@
 const searchEl = document.querySelector("#searchedCity");
 const searchBtn = document.querySelector("#search");
 const currCityEl = document.querySelector("#currentCity");
-const currTempEl = document.querySelector("#currentTemp");
-const currWindEl = document.querySelector("#currentWind");
-const currHumiEl = document.querySelector("#currentHumidity");
+const currInfoEl = document.querySelector("#currentInfo");
 const currUVEl = document.querySelector("#currentUV");
 const currUVIndexEl = document.querySelector("#currentUVIndex");
 const fiveDayEl = document.querySelector("#fiveDay");
@@ -73,24 +71,34 @@ function citySearch() {
       const currTemp = data.current.temp;
 
       pTemp.textContent = `Temp: ${currTemp}\u00B0F`;
-      currTempEl.appendChild(pTemp);
+      currInfoEl.appendChild(pTemp);
 
       const currWind = data.current.wind_speed;
 
       pWind.textContent = `Wind: ${currWind} MPH`;
-      currWindEl.appendChild(pWind);
+      currInfoEl.appendChild(pWind);
 
       const currHumi = data.current.humidity;
 
-      pHumi.textContent = `Humidity: ${currHumi} %`;
-      currHumiEl.appendChild(pHumi);
+      pHumi.textContent = `Humidity: ${currHumi}%`;
+      currInfoEl.appendChild(pHumi);
 
       const currUV = data.current.uvi;
 
-      pUV.textContent = `UV Index: `;
+      pUV.textContent = `UV Index:  `;
       pUVIndex.textContent = `${currUV}`;
       currUVEl.appendChild(pUV);
       currUVIndexEl.appendChild(pUVIndex);
+
+      if (currUV < 3) {
+        currUVIndexEl.setAttribute("class", "uvLow");
+      } else if (currUV < 6) {
+        currUVIndexEl.setAttribute("class", "uvMid");
+      } else if (currUV < 8) {
+        currUVIndexEl.setAttribute("class", "uvHigh");
+      } else {
+        currUVIndexEl.setAttribute("class", "uvVHigh");
+      }
     });
 }
 
@@ -108,14 +116,14 @@ function fiveDay() {
       console.log(data);
 
       for (let i = 1; i < 6; i++) {
-        const dayBox = document.createElement('div');
+        const dayBox = document.createElement("div");
         const h3 = document.createElement("h3");
         const imgFive = document.createElement("img");
         const pTempFive = document.createElement("p");
         const pWindFive = document.createElement("p");
         const pHumiFive = document.createElement("p");
 
-        dayBox.setAttribute('id', `day${i}`);
+        dayBox.setAttribute("id", `day${i}`);
         fiveDayEl.appendChild(dayBox);
 
         const currUnixFive = data.daily[i].dt;
@@ -145,15 +153,24 @@ function fiveDay() {
 
         const currHumiFive = data.daily[i].humidity;
 
-        pHumiFive.textContent = `Humidity: ${currHumiFive} %`;
+        pHumiFive.textContent = `Humidity: ${currHumiFive}%`;
         dayBox.appendChild(pHumiFive);
       }
     });
 }
 
+function removePrevious() {
+  currCityEl.innerHTML = "";
+  currInfoEl.innerHTML = "";
+  currUVEl.innerHTML = "";
+  currUVIndexEl.innerHTML = "";
+  fiveDayEl.innerHTML = "";
+}
+
 searchBtn.onclick = function () {
   let searchedCity = searchEl.value;
   if (searchedCity !== "") {
+    removePrevious();
     getCoords(searchedCity);
     setTimeout(citySearch, 1000);
     setTimeout(fiveDay, 1000);

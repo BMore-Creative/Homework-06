@@ -11,7 +11,7 @@ p {
 header {
     padding: 7px;
     text-align: center;
-    background-color: rgb(37, 80, 158);
+    background-color: rgb(36, 67, 124);
     height: 60px;
     color: white;
 }
@@ -41,7 +41,7 @@ button.search {
 
 button#search {
     min-width: 100%;
-    background-color: skyblue;
+    background-color: rgb(179, 216, 231);
     flex-basis: 0px;
 }
 
@@ -57,11 +57,13 @@ button#search {
     margin-top: 5px;
     padding-left: 7px;
     padding-bottom: 10px;
-    gap: 10px;
+    gap: 5px;
     width: 65vw;
-    min-height: 20vh;
+    min-height: 15vh;
     height: fit-content;
     border: 1px solid darkgray;
+    border-radius: 7px;
+    background-color: rgb(201, 222, 230);
 }
 
 .currentCity {
@@ -71,6 +73,43 @@ button#search {
 
 .currentCity h2 {
     margin-right: 5px;
+}
+
+#currentInfo {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.currentUV {
+    display: inline-flex;
+}
+
+#currentUV {
+    margin-right: 5px;
+    align-items: baseline;
+}
+
+#currentUVIndex {
+    padding: 1px 10px;
+    border-radius: 10%;
+}
+
+.uvLow {
+    background-color: lightgreen;
+}
+
+.uvMid {
+    background-color: rgb(247, 247, 105);
+}
+
+.uvHigh {
+    background-color: lightsalmon;
+}
+
+.uvVHigh {
+    background-color: rgb(172, 54, 54);
 }
 
 .fiveDay {
@@ -90,7 +129,7 @@ button#search {
 
 #day1, #day2, #day3, #day4, #day5 {
     display: inline-flex;
-    background-color: rgb(9, 27, 48);
+    background-color: rgb(23, 46, 73);
     color: white;
     padding: 0px 5px 7px 5px;
     gap: 7px;
@@ -98,6 +137,7 @@ button#search {
     flex-direction: column;
     flex-grow: 1;
     margin-right: 10px;
+    border-radius: 5%;
 }
 
 #day5 {
