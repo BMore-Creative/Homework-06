@@ -1,4 +1,4 @@
-# Homework-06
+# Weather Dashboard
 
 ![image](https://user-images.githubusercontent.com/80925456/129381184-1b7bbc02-bef5-4c09-a8f1-150dc47de193.png)
 
