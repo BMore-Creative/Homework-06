@@ -18,10 +18,10 @@ Live Link: https://bmore-creative.github.io/Weather-Dashboard/
 >Front-end application that provides the user with weather information for cities of their choice
 
 ### Built With
--HTML 
--CSS 
--Javascript 
--OpenWeatherAPI
+- HTML 
+- CSS 
+- Javascript 
+- OpenWeatherAPI
 
 ## Usage
 
