@@ -4,6 +4,10 @@
   margin: 0;
 }
 
+html {
+  background-color: rgb(233, 242, 245);
+}
+
 p {
   font-weight: normal;
 }
@@ -81,7 +85,7 @@ button#clear {
   height: fit-content;
   border: 1px solid darkgray;
   border-radius: 7px;
-  background-color: rgb(201, 222, 230);
+  background-color: rgb(185, 215, 226);
 }
 
 .currentCity {
